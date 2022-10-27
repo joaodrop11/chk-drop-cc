@@ -4,7 +4,7 @@
 error_reporting(0);
 set_time_limit(0);
 error_reporting(0);
-date_default_timezone_set('America/Buenos_Aires');
+date_default_timezone_set('América do Sul/Brasil');
 
 
 function multiexplode($delimiters, $string)
